@@ -3,7 +3,10 @@
 #include <cstring>
 #include <utility>
 #include <vector>
-/*Copy from https://www.cnblogs.com/tweetuzki/p/13157847.html*/
+/*
+Copy from https://www.cnblogs.com/tweetuzki/p/13157847.html
+O((n + m )log n)
+*/
 const int MaxN = 500000, MaxM = 500000;
 
 struct graph_t {
