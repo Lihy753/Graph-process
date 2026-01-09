@@ -8,7 +8,12 @@ Copy from https://www.cnblogs.com/tweetuzki/p/13157847.html
 O((n + m )log n)
 */
 const int MaxN = 500000, MaxM = 500000;
-
+/*
+  head[u] : 顶点 u 所对应的第一条 edge_id;
+  next[e_id_i] = e_id_j; 排过序之后的, 第 i 条边的下一条 id 是 j;
+  to[e_id_i] = v; 第 i 条边指向的是节点 v;
+  至于第 i 条边的起始点, 则是要在上面几条信息中隐含着的.
+*/
 struct graph_t {
   int cnte;
   int head[MaxN + 5], to[MaxM * 2 + 5], next[MaxM * 2 + 5];
@@ -26,7 +31,10 @@ struct union_find {
   union_find() { memset(par, -1, sizeof par); }
 
   int find(int x) { return par[x] < 0 ? x : par[x] = find(par[x]); }
-
+  /*
+    par[x] : 如果 x 是根节点, 那么 par[x] 就是该 -1 * (super node 里面的元素的个数)! 当然是包含了自己的
+             如果不是根节点, 那么 par[x] 就对应其 root !
+  */
   inline void merge(int u, int v) {
     int p = find(u), q = find(v);
     if (p == q) return;
